@@ -1,12 +1,6 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 const baseUrl = "/"
-
-const htmlPlugin = new HtmlWebPackPlugin({
-    baseUrl: baseUrl,
-    template: "./index.html",
-    filename: "./index.html"
-});
 
 module.exports = {
     output: {
@@ -15,8 +9,7 @@ module.exports = {
     },
     devServer: {
         port: 9000,
-        publicPath: baseUrl,
-        historyApiFallback: true
+        publicPath: baseUrl
     },
     module: {
         rules: [
@@ -29,5 +22,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlPlugin]
-};
+    plugins: [
+        new HtmlWebPackPlugin({
+            baseUrl: baseUrl,
+            template: './src/index.html',
+            filename: './index.html',
+            inject: "body"
+        })
+    ]
+}
